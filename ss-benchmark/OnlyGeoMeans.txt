@@ -1,0 +1,165 @@
+**** Baseline datapath. $il1 = $dl1 = 16kB, direct, 8B  ****
+**** $ul2 = 64kB, First varied ways from 2 to 16, then  ****
+**** Block Size from 16B to 256B. replace policy random ****
+baseline16_64_r1	INT = 838.590	FP = 662.796
+baseline16_64_r2	INT = 830.162	FP = 670.139
+baseline16_64_r3	INT = 821.706	FP = 682.501
+baseline16_64_r4	INT = 827.725	FP = 695.949
+baseline16_64_r5	INT = 753.042	FP = 664.057
+baseline16_64_r6	INT = 744.468	FP = 669.451
+baseline16_64_r7	INT = 737.156	FP = 682.314
+baseline16_64_r8	INT = 744.122	FP = 695.625
+baseline16_64_r9	INT = 696.289	FP = 667.624
+baseline16_64_r10	INT = 691.237	FP = 671.129
+baseline16_64_r11	INT = 690.198	FP = 681.900
+baseline16_64_r12	INT = 708.536	FP = 694.854
+baseline16_64_r13	INT = 678.089	FP = 690.690
+baseline16_64_r14	INT = 677.277	FP = 687.272
+baseline16_64_r15	INT = 695.451	FP = 694.003
+baseline16_64_r16	INT = 716.301	FP = 706.453
+baseline16_64_r17	INT = 703.887	FP = 747.835
+baseline16_64_r18	INT = 699.413	FP = 730.325
+baseline16_64_r19	INT = 729.370	FP = 726.707
+baseline16_64_r20	INT = 756.923	FP = 736.382
+**** Baseline datapath. $il1 = $dl1 = 16kB, direct, 8B  ****
+**** $ul2 = 64kB, First varied ways from 2 to 16, then  ****
+**** Block Size from 16B to 256B. replace policy fifo   ****
+baseline16_64_f1	INT = 784.048	FP = 660.372
+baseline16_64_f2	INT = 793.070	FP = 667.288
+baseline16_64_f3	INT = 802.215	FP = 680.196
+baseline16_64_f4	INT = 811.562	FP = 693.777
+baseline16_64_f5	INT = 703.959	FP = 661.687
+baseline16_64_f6	INT = 713.634	FP = 667.122
+baseline16_64_f7	INT = 723.094	FP = 680.010
+baseline16_64_f8	INT = 733.135	FP = 693.618
+baseline16_64_f9	INT = 659.181	FP = 664.113
+baseline16_64_f10	INT = 668.538	FP = 666.609
+baseline16_64_f11	INT = 678.365	FP = 678.903
+baseline16_64_f12	INT = 689.075	FP = 693.020
+baseline16_64_f13	INT = 639.444	FP = 682.949
+baseline16_64_f14	INT = 647.803	FP = 678.749
+baseline16_64_f15	INT = 657.020	FP = 689.452
+baseline16_64_f16	INT = 667.952	FP = 703.733
+baseline16_64_f17	INT = 669.563	FP = 731.464
+baseline16_64_f18	INT = 675.133	FP = 710.315
+baseline16_64_f19	INT = 681.470	FP = 717.027
+baseline16_64_f20	INT = 692.562	FP = 731.491
+**** Baseline datapath. $il1 = $dl1 = 16kB, direct, 8B  ****
+**** $ul2 = 64kB, First varied ways from 2 to 16, then  ****
+**** Block Size from 16B to 256B. replace policy lru    ****
+baseline16_64_l1	INT = 783.269	FP = 660.098
+baseline16_64_l2	INT = 791.742	FP = 666.593
+baseline16_64_l3	INT = 800.777	FP = 679.849
+baseline16_64_l4	INT = 810.285	FP = 693.306
+baseline16_64_l5	INT = 703.433	FP = 661.511
+baseline16_64_l6	INT = 712.939	FP = 666.483
+baseline16_64_l7	INT = 722.035	FP = 679.557
+baseline16_64_l8	INT = 732.030	FP = 693.116
+baseline16_64_l9	INT = 658.464	FP = 663.818
+baseline16_64_l10	INT = 667.920	FP = 665.953
+baseline16_64_l11	INT = 677.494	FP = 678.393
+baseline16_64_l12	INT = 688.170	FP = 692.244
+baseline16_64_l13	INT = 638.343	FP = 682.519
+baseline16_64_l14	INT = 647.023	FP = 677.087
+baseline16_64_l15	INT = 656.145	FP = 688.388
+baseline16_64_l16	INT = 667.109	FP = 702.611
+baseline16_64_l17	INT = 667.887	FP = 731.026
+baseline16_64_l18	INT = 673.317	FP = 707.118
+baseline16_64_l19	INT = 680.262	FP = 714.412
+baseline16_64_l20	INT = 691.368	FP = 728.541
+****  LRU gives the least execution time for both INT  ****
+****  and FP. So we do rest of the baseline simulations****
+****  using LRU policy                                 ****
+baseline16_128_l1	INT = 791.794	FP = 666.526
+baseline16_128_l2	INT = 801.179	FP = 680.036
+baseline16_128_l3	INT = 810.556	FP = 693.500
+baseline16_128_l4	INT = 819.930	FP = 706.782
+baseline16_128_l5	INT = 712.503	FP = 666.057
+baseline16_128_l6	INT = 722.282	FP = 679.743
+baseline16_128_l7	INT = 732.231	FP = 693.229
+baseline16_128_l8	INT = 742.187	FP = 706.496
+baseline16_128_l9	INT = 667.562	FP = 664.448
+baseline16_128_l10	INT = 677.669	FP = 678.393
+baseline16_128_l11	INT = 688.301	FP = 692.273
+baseline16_128_l12	INT = 698.947	FP = 705.794
+baseline16_128_l13	INT = 646.125	FP = 674.405
+baseline16_128_l14	INT = 656.333	FP = 688.388
+baseline16_128_l15	INT = 667.183	FP = 702.611
+baseline16_128_l16	INT = 678.090	FP = 716.435
+baseline16_128_l17	INT = 671.174	FP = 700.626
+baseline16_128_l18	INT = 680.617	FP = 714.630
+baseline16_128_l19	INT = 691.423	FP = 729.340
+baseline16_128_l20	INT = 702.485	FP = 743.828
+****  For all 3 replacement policies, best execution   ****
+****  time for INT comes around xxx_14. For lru it is  ****
+****  xxx_13. Performance degrades on increasing the   ****
+****  cache size from 64 to 128 kB, while L1$ is fixed ****
+****  at 16kB. We vary L1$ now for UL2$ of 64kb, 2-way ****
+****  with block size of 128B                          ****
+
+****  $dl1=16kB, 2way, 4way BS from 8B to 64B          ****
+baseline16d16_64_l1	INT = 652.512	FP = 693.850
+baseline16d16_64_l2	INT = 642.262	FP = 692.240
+baseline16d16_64_l3	INT = 636.897	FP = 690.725
+baseline16d16_64_l4	INT = 633.905	FP = 689.619
+baseline16d16_64_l5	INT = 652.235	FP = 693.120
+baseline16d16_64_l6	INT = 641.676	FP = 691.579
+baseline16d16_64_l7	INT = 636.067	FP = 689.644
+baseline16d16_64_l8	INT = 633.155	FP = 688.293
+
+****  $dl1=32kB, 2way, 4way BS from 8B to 64B          ****
+baseline16d32_64_l6	INT = 703.932	FP = 726.472
+baseline16d32_64_l3	INT = 668.461	FP = 707.748
+baseline16d32_64_l1	INT = 680.893	FP = 711.007
+baseline16d32_64_l4	INT = 666.079	FP = 706.527
+baseline16d32_64_l7	INT = 700.808	FP = 725.226
+baseline16d32_64_l5	INT = 709.561	FP = 727.478
+baseline16d32_64_l8	INT = 699.038	FP = 724.109
+baseline16d32_64_l2	INT = 673.095	FP = 709.089
+
+**** Degrades performance. So $dl1 16kB, 4-way with    ****
+**** with BS 64 B is our best choice till now          ****
+**** We check if increasing $il1 cache size is helpful ****
+**** for this $dl1                                     ****
+
+**** $il1=16kB, 2-way 4-way BS 8B to 64B.              ****
+**** $dl1=16kB, 4-way BS 64B $ul2=64kB, 2-way BS 128B  ****
+baseline16i2_64_l3	INT = 659.093	FP = 665.624
+baseline16i2_64_l4	INT = 658.680	FP = 668.148
+baseline16i2_64_l7	INT = 656.779	FP = 652.987
+baseline16i2_64_l2	INT = 660.393	FP = 678.482
+baseline16i2_64_l1	INT = 660.821	FP = 697.576
+baseline16i2_64_l8	INT = 657.321	FP = 665.009
+baseline16i2_64_l5	INT = 657.599	FP = 655.548
+baseline16i2_64_l6	INT = 657.078	FP = 648.086
+
+**** $il1 with higher associativity is increasing FP   ****
+**** performance but is degrading INT. We increase $il1****
+**** to 32kB to see if INT performance improves        ****
+
+**** $il1=32kB,DM, 2-way 4-way BS 8B to 64B.           ****
+**** $dl1=16kB, 4-way BS 64B $ul2=64kB, 2-way BS 128B  ****
+baseline32i_64_l6	INT = 657.117	FP = 653.688
+baseline32i_64_l10	INT = 657.117	FP = 636.243
+baseline32i_64_l2	INT = 663.196	FP = 662.976
+baseline32i_64_l12	INT = 656.567	FP = 635.521
+baseline32i_64_l1	INT = 668.354	FP = 675.600
+baseline32i_64_l9	INT = 657.550	FP = 636.725
+baseline32i_64_l8	INT = 656.567	FP = 660.596
+baseline32i_64_l3	INT = 660.741	FP = 657.730
+baseline32i_64_l7	INT = 656.779	FP = 652.091
+baseline32i_64_l4	INT = 659.158	FP = 665.441
+baseline32i_64_l5	INT = 657.550	FP = 651.151
+baseline32i_64_l11	INT = 656.779	FP = 635.923
+
+**** FP improves a little and negligible improvement in ****
+**** in INT. Stick to $il1=16kB. Separate configs for   ****
+**** best performance of INT and FP for scalar machine  ****
+**** best scalar for INT: baseline16d16_64_l8           ****
+**** $il1 16kB, DM, 8B, $dl1 16kB, 4-way, 64B, $ul2 64kB****
+**** 2-way, 128B block                                  ****
+**** best scalar for FP: baseline32i_64_l11             ****
+**** $il1 32kB, 4-way, 32B. $dl1 16kB, 4-way, 64B, $ul2 ****
+**** 64kB, 2-way BS 128B                                ****
+
+**** We can now proceed to 2-way static and dynamic     ****

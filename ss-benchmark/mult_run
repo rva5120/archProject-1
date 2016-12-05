@@ -1,0 +1,28 @@
+#!/bin/bash
+
+#for var in "$@"
+readarray -t LINES < "$1"
+for var in "${LINES[@]}"
+do
+  #cfgFile="$1.cfg"
+  #outputFile="$1.out"
+  cfgFile="$var.cfg"
+  outputFile="$var.out"
+  mainDirCfg="/home/software/simplesim/simplesim-3.0/sim-outorder -config"
+  outFile="-redir:sim"
+  declare -a benchmark=("bzip2_base.i386-m32-gcc42-nn dryer.jpg"
+                        "equake_base.pisa_little <inp.in> inp.out"
+                        "hmmer_base.i386-m32-gcc42-nn bombesin.hmm"
+                        "mcf_base.i386-m32-gcc42-nn inp.in"
+                        "milc_base.i386-m32-gcc42-nn < su3imp.in"
+                        "sjeng_base.i386-m32-gcc42-nn test.txt"
+                         )
+  declare -a directory=("bzip2" "equake" "hmmer" "mcf" "milc" "sjeng")
+  i=0
+  for ((i=0; i<${#directory[@]}; i++))
+  do
+    cd ${directory[$i]}
+    eval "$mainDirCfg ../config_files/$cfgFile $outFile results/$outputFile ${benchmark[$i]}"
+    cd -
+  done
+done
