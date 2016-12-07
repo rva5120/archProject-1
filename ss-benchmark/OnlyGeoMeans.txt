@@ -163,3 +163,117 @@ baseline32i_64_l11	INT = 656.779	FP = 635.923
 **** 64kB, 2-way BS 128B                                ****
 
 **** We can now proceed to 2-way static and dynamic     ****
+
+**** Testing: Dynamic 4-way				****
+**** $il1=16kB, DM, 64B & $dl1=16kB, 4-way 64B		****
+**** $ul2=512kB, 2-way, 128B LRU			****
+**** Max Decode width = ifq size = 8			****
+**** Issue width = 4 (4-way)				****
+
+**** Fetch Speed 1 through 4				****
+dynamic16i_512_l4	INT = 566.278	FP = 597.009
+dynamic16i_512_l1	INT = 575.472	FP = 613.122
+dynamic16i_512_l2	INT = 567.351	FP = 599.822
+dynamic16i_512_l3	INT = 566.444	FP = 597.498
+**** Best is speed=4 by a little, so set 4 as default 	****
+
+**** ALU and MULT units					****
+**** ..._resxy_... x = iALU y = iMULT			****
+dynamic16i_512_l4	INT = 886.392	FP = 919.542
+dynamic16i_512_l1	INT = 886.352	FP = 919.542
+dynamic16i_512_l2	INT = 886.392	FP = 919.642
+dynamic16i_512_l3	INT = 886.392	FP = 919.542
+**** adding more ALU units does not help...		****
+
+**** Try all, and change BP RAS to 1 			****
+dynamic16i_512_l4	INT = 886.392	FP = 919.542
+dynamic16i_512_l1	INT = 886.352	FP = 919.542
+dynamic16i_512_l2	INT = 886.392	FP = 919.642
+dynamic16i_512_l3	INT = 886.392	FP = 919.542
+
+**** Did not help that much, increase RAS to 8 (HW5)	****
+
+dynamic16i_512_l4	INT = 886.392	FP = 919.542
+dynamic16i_512_l1	INT = 886.352	FP = 919.542
+dynamic16i_512_l2	INT = 886.392	FP = 919.642
+dynamic16i_512_l3	INT = 886.392	FP = 919.542
+
+
+********************************************************************
+
+**** Trying new scheme to see what we find...		****
+**** New test, since I was having a hard time getting good time, started to change the cache 
+	- dl1 & il1: 	32kB DM 64B	   small & fast L1  			big block size	
+	- ul2:		512 KB 4-way 128B  larger & as fast as we can hanle L2 	big block size
+	- Changed the ALUs to double the MULTs and that worked out nicely, but we could try more options (could improve INT timing..)
+	- Left the Speed at 2, but it could be experimented with (might improve timing)
+	- Made it an 8-wide machine instead of a 4-wide, and maxed the decode width as well
+	- IFQ size is max of 8 (so our instr cache must be 64B)
+	- Summary: OOO 8-wide machine
+
+	 	    REPORT DATA STARTS HERE
+####################################################################
+Machine fixed features (our baseline):
+	- OOO 8-wide Dynamic SuperScalar
+	- Decode and Issue width of 8
+	- IFQ size of 8
+	- L1 Cache block size restricted to 64B
+	- RUU size of 64 (8*8)
+	- LSQ size of 32 (4*8)
+Experiments will determine:
+	- Cache Design (best case will be chosen as the default for the rest of the experiments)
+	- Branch Prediction (although we use a default of 1024 and BTB 256 4)
+	- RAS (default is 0)
+	- iALU/iMULT, and fpALU/fpMULT units (default is 8/4 8/4)
+If time permits...
+	- RUU and LSQ sizes (default to max of 64 and 32 respectively)
+	- Fetch Speed (default of 2)
+	- Memory Bus Width (default of 8)
+####################################################################
+
+**** Base Configuration from now on: OOO 8-wide dynamic SS 	****
+**** 1. Optimal Cache Finding: We want a small L1 cache	and a  	****
+****    larger L2 cache (the largest before we start declining)	****
+ 	- Test 1: $il1 & $dl1 16kB DM 64B			
+	     $ul2 64kB to 1024kB 2-way 128B
+	- Test 2: $il1 & $dl1 32kB DM 64B			
+	     $ul2 64kB to 1024kB 2-way 128B				
+ 	- Test 3: $il1 & $dl1 64kB DM 64B
+	     $ul2 128kB to 1024kB 2-way 128B
+ 	- Test 4: $il1 & $dl1 128kB DM 64B (max kB reached)
+	     $ul2 256kB to 1024kB 2-way 128B 
+**** The best above is..# now try that one with ul2 4-way instead and compare ****
+**** This will give us the best cache we can get for this machine	****
+
+**** 2. Branch Prediction Finding: with the above cache, try all 
+	bimod and all 2lev and then combine and pick the most optimal	****
+	- Test 1: Bimodal 1024 and BTB 256 4 (RAS 0 8 16)
+	- Test 2: Bimodal 1024 and BTB 512 4 (RAS 0 8 16)
+	- Test 3: Bimodal 1024 and BTB 1024 4 (RAS 0 8 16)
+	- Test 4: Bimodal 2048 and best BTB and RAS above ?
+	- Test 5: 2Lev ??? -find out how to go about this
+	- Test 6: Comb both of the best results above and compare the 3
+**** The best result is #, we will use this model from now on		****
+
+**** 3. Experiment with ALUs and MULTs (no larger than 2*8=16)		****
+****	This can be good for FP and INT differentiation			****
+	- Test 1: iALU/iMULT   	8/8
+		  fpALU/fpMULT 	8/8
+	- Test 2: iALU/iMULT	10/6
+		  fpALU/fpMULT	10/6
+	- Test 3: iALU/iMULT	6/10
+		  fpALU/fpMULT	6/10
+	- Test 4: iALU/iMULT	4/4
+		  fpALU/fpMULT  4/4
+	- Test 5: iALU/iMULT	10/6
+		  fpALU/fpMULT	4/4
+	- Test 6: iALU/iMULT	4/4
+		  fpALU/fpMULT	10/6
+**** If the outcome of this is substantially different, then keep investigating.
+	otherwise, continue to the next feature
+
+**** 4. Fetch Speed and Memory Bus Width: if there is enough time, we can	****
+****	check how these affect performance, and change thr design accordingly.	****
+
+************************************************************************************
+
