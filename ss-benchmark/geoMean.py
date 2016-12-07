@@ -64,7 +64,7 @@ for fNm in config_name.readlines():
     inst_count = 2500000				# fixed instruction count to 2500000
     cycle_time_static = [100, 110, 130]		# fixed values for issue width [1, 2, 4]
     cycle_time_dynamic = [140, 170, 200]		# fixed values for issue width [2, 4. 8]
-    cycle_time = cycle_time_static[0]		# default is set to issue width 1 in static
+    cycle_time = cycle_time_dynamic[2]		# default is set to issue width 1 in static
 
 
     # Name: 	get_IPC

@@ -1,12 +1,3 @@
-baseline32i_64_l6
-baseline32i_64_l10
-baseline32i_64_l2
-baseline32i_64_l12
-baseline32i_64_l1
-baseline32i_64_l9
-baseline32i_64_l8
-baseline32i_64_l3
-baseline32i_64_l7
-baseline32i_64_l4
-baseline32i_64_l5
-baseline32i_64_l11
+baseline
+cache_l1_64k_l2_1024k
+cache_l1_32k_l2_1024k

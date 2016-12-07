@@ -1,0 +1,2 @@
+#!/bin/bash
+python geoMean.py fileList.txt

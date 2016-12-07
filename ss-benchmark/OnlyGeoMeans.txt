@@ -236,14 +236,57 @@ If time permits...
 ****    larger L2 cache (the largest before we start declining)	****
  	- Test 1: $il1 & $dl1 16kB DM 64B			
 	     $ul2 64kB to 1024kB 2-way 128B
+cache_l1_16k_l2_256k	INT = 400.777	FP = 326.789
+cache_l1_16k_l2_64k	INT = 405.498	FP = 348.684
+baseline		INT = 405.517	FP = 348.684
+cache_l1_16k_l2_512k	INT = 361.627	FP = 332.210 x
+cache_l1_16k_l2_1024k	INT = 357.484	FP = 330.676
+cache_l1_16k_l2_128k	INT = 405.149	FP = 318.503
 	- Test 2: $il1 & $dl1 32kB DM 64B			
-	     $ul2 64kB to 1024kB 2-way 128B				
+	     $ul2 64kB to 1024kB 2-way 128B
+baseline		INT = 408.515	FP = 328.245
+cache_l1_32k_l2_64k	INT = 408.612	FP = 328.245
+cache_l1_32k_l2_1024k	INT = 321.614	FP = 290.224 :)
+cache_l1_32k_l2_512k	INT = 324.402	FP = 295.428
+cache_l1_32k_l2_256k	INT = 365.455	FP = 294.738
+cache_l1_32k_l2_128k	INT = 372.989	FP = 291.698			
  	- Test 3: $il1 & $dl1 64kB DM 64B
 	     $ul2 128kB to 1024kB 2-way 128B
+cache_l1_64k_l2_128k	INT = 410.481	FP = 290.249
+baseline		INT = 410.524	FP = 290.249
+cache_l1_64k_l2_1024k	INT = 321.920	FP = 282.528 :)
+cache_l1_64k_l2_256k	INT = 368.168	FP = 289.862
+cache_l1_64k_l2_512k	INT = 324.747	FP = 288.964
  	- Test 4: $il1 & $dl1 128kB DM 64B (max kB reached)
 	     $ul2 256kB to 1024kB 2-way 128B 
+cache_l1_128k_l2_1024k	INT = 340.616	FP = 288.142 x
+cache_l1_128k_l2_256k	INT = 419.388	FP = 296.952
+baseline		INT = 419.440	FP = 296.952
+cache_l1_128k_l2_512k	INT = 346.764	FP = 295.391
 **** The best above is..# now try that one with ul2 4-way instead and compare ****
-**** This will give us the best cache we can get for this machine	****
+Since the best above were l1_32k_l2_1024k and l1_64k_l2_1024k, try 4-way and check results:
+	- Test A: $il1 & $dl1 32kB DM 64B			
+	     	  $ul2 1024kB 4-way 128B
+cache_l1_32k_l2_1024k	INT = 322.660	FP = 294.597
+	- Test B: $il1 & $dl1 64kB DM 64B
+	          $ul2 1024kB 4-way 128B
+cache_l1_64k_l2_1024k	INT = 322.164	FP = 285.019
+**** Since adding the 4-way to the best caches didn't help, let's try 4-way on all ****
+**** Adding 4-way also adds latency, so smaller caches might benefit more than larger ones ****
+ 	- Test 1: $il1 & $dl1 16kB DM 64B			
+	     $ul2 64kB to 1024kB 4-way 128B
+
+	- Test 2: $il1 & $dl1 32kB DM 64B			
+	     $ul2 64kB to 1024kB 4-way 128B
+
+ 	- Test 3: $il1 & $dl1 64kB DM 64B
+	     $ul2 128kB to 1024kB 4-way 128B
+
+ 	- Test 4: $il1 & $dl1 128kB DM 64B (max kB reached)
+	     $ul2 256kB to 1024kB 4-way 128B
+
+**** Our new default cache for the rest of the experiments is: 		****
+
 
 **** 2. Branch Prediction Finding: with the above cache, try all 
 	bimod and all 2lev and then combine and pick the most optimal	****
@@ -276,4 +319,6 @@ If time permits...
 ****	check how these affect performance, and change thr design accordingly.	****
 
 ************************************************************************************
+
+
 
